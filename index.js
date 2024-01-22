@@ -54,15 +54,15 @@ const app=express();
 const port=3001;
 
 // when deploy  on vercel 
-const corsConfig = {
-  origin: '',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
-}
-app.use(cors(corsConfig))
-app.options("", cors(corsConfig))
+// const corsConfig = {
+//   origin: '',
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE']
+// }
+// app.use(cors(corsConfig))
+// app.options("", cors(corsConfig))
 // this for local use 
-// app.use(cors({ origin: 'http://localhost:3000'}));
+app.use(cors({ origin: 'https://react-form-ruddy-one.vercel.app/'}));
 app.use(bodyParser.json()); /* parse json data */
 app.use(bodyParser.urlencoded({extended:true}));  /* parse encoded data  like & ? */
 app.get('/', (req, res, next) => res.status(200).json({ root: 'ok' }));
