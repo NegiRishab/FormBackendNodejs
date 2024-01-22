@@ -62,7 +62,7 @@ const port=3001;
 // app.use(cors(corsConfig))
 // app.options("", cors(corsConfig))
 // this for local use 
-app.use(cors({ origin: 'https://react-form-ruddy-one.vercel.app/'}));
+app.use(cors({ origin: 'https://react-form-ruddy-one.vercel.app'}));
 app.use(bodyParser.json()); /* parse json data */
 app.use(bodyParser.urlencoded({extended:true}));  /* parse encoded data  like & ? */
 app.get('/', (req, res, next) => res.status(200).json({ root: 'ok' }));
