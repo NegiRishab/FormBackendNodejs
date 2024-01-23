@@ -59,8 +59,9 @@ const port=3001;
 //   credentials: true,
 // }
 
-app.use(cors())
+
 // const corsConfig = {
+  /* parse encoded data  like & ? */
 //   origin: '',
 //   credentials: true,
 //   methods: ['GET', 'POST', 'PUT', 'DELETE']
@@ -70,7 +71,8 @@ app.use(cors())
 // this for local use 
 // app.use(cors({ origin: 'https://react-form-ruddy-one.vercel.app'}));
 app.use(bodyParser.json()); /* parse json data */
-app.use(bodyParser.urlencoded({extended:true}));  /* parse encoded data  like & ? */
+app.use(bodyParser.urlencoded({extended:true})); 
+app.use(cors());
 app.get('/', (req, res, next) => res.status(200).json({ root: 'ok' }));
 app.use('/form',formroute);
 app.use((err, req, res, next) => {
