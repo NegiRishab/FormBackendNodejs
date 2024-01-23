@@ -56,7 +56,7 @@ const port=3001;
 // when deploy  on vercel 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://react-form-ruddy-one.vercel.app",
   })
 );
 // const corsConfig = {
