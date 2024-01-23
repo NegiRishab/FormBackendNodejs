@@ -54,11 +54,12 @@ const app=express();
 const port=3001;
 
 // when deploy  on vercel 
-app.use(
-  cors({
-    origin: "https://react-form-ruddy-one.vercel.app",
-  })
-);
+// const corsOptions = {
+//   origin: 'https://react-form-ruddy-one.vercel.app',
+//   credentials: true,
+// }
+
+app.use(cors())
 // const corsConfig = {
 //   origin: '',
 //   credentials: true,
