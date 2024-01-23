@@ -48,9 +48,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const http = require('http');
-const allowCors = require('./cors');
-const handler = require('./handler');
+
 require('dotenv').config();
 const formroute = require('./formdata/route')
 const app = express();
@@ -58,11 +56,10 @@ const port = 3001;
 
 // when deploy  on vercel 
 
-const handlerWithCors = allowCors(handler);
-const server = http.createServer(handlerWithCors);
+
 app.use(bodyParser.json()); /* parse json data */
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(cors());
+app.use(cors());
 app.get('/', (req, res, next) => res.status(200).json({ root: 'ok' }));
 app.use('/form', formroute);
 app.use((err, req, res, next) => {
@@ -79,6 +76,7 @@ app.use((err, req, res, next) => {
     },
   });
 });
+console.log("process", process.env.DATABASE_URL)
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -88,6 +86,6 @@ mongoose.connect(process.env.DATABASE_URL, {
   console.log(error)
 })
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`app listen on port${port}`)
 })
