@@ -44,37 +44,27 @@
 
 // app.use is a method to trigger any middleware in express 
 
-const express=require('express');
-const bodyParser=require('body-parser');
-const cors=require('cors');
-const mongoose=require('mongoose');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const http = require('http');
+const allowCors = require('./cors');
+const handler = require('./handler');
 require('dotenv').config();
-const formroute=require('./formdata/route')
-const app=express();
-const port=3001;
+const formroute = require('./formdata/route')
+const app = express();
+const port = 3001;
 
 // when deploy  on vercel 
-// const corsOptions = {
-//   origin: 'https://react-form-ruddy-one.vercel.app',
-//   credentials: true,
-// }
 
-
-// const corsConfig = {
-  /* parse encoded data  like & ? */
-//   origin: '',
-//   credentials: true,
-//   methods: ['GET', 'POST', 'PUT', 'DELETE']
-// }
-// app.use(cors(corsConfig))
-// app.options("", cors(corsConfig))
-// this for local use 
-// app.use(cors({ origin: 'https://react-form-ruddy-one.vercel.app'}));
+const handlerWithCors = allowCors(handler);
+const server = http.createServer(handlerWithCors);
 app.use(bodyParser.json()); /* parse json data */
-app.use(bodyParser.urlencoded({extended:true})); 
-app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(cors());
 app.get('/', (req, res, next) => res.status(200).json({ root: 'ok' }));
-app.use('/form',formroute);
+app.use('/form', formroute);
 app.use((err, req, res, next) => {
   // Log the error or perform any custom handling
   console.error(err.stack);
@@ -89,16 +79,15 @@ app.use((err, req, res, next) => {
     },
   });
 });
-console.log("process",process.env.DATABASE_URL)
-mongoose.connect(process.env.DATABASE_URL,{
+mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}).then(()=>{
+}).then(() => {
   console.log('mongodb connected')
-}).catch((error)=>{
+}).catch((error) => {
   console.log(error)
 })
 
-app.listen(port,()=>{
+server.listen(port, () => {
   console.log(`app listen on port${port}`)
 })
