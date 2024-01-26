@@ -6,11 +6,11 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [{ "source": "/(.*)", "destination": "src/index.js" }],
+  "headers": [
     {
-      "src": "/(.*)",
-      "dest": "./index.js"
-
+      "source": "/(.*)",
+      "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
     }
   ]
 }
