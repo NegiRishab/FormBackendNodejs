@@ -50,7 +50,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 require('dotenv').config();
-const formroute = require('./formdata/route')
+const formroute = require('../formdata/route')
 const app = express();
 const port = 3001;
 
