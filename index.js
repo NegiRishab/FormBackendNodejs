@@ -133,9 +133,4 @@ app.listen(port, () => {
   //   }
   // ]
 
-  // "headers": [
-  //   {
-  //     "source": "/(.*)",
-  //     "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
-  //   }
-  // ]
+ 
