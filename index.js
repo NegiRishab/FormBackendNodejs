@@ -88,3 +88,20 @@ mongoose.connect(process.env.DATABASE_URL, {
 app.listen(port, () => {
   console.log(`app listen on port${port}`)
 })
+
+
+
+
+ // "routes": [
+  //   {
+  //     "src": "/(.*)",
+  //     "dest": "./index.js",
+  //     "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  //     "headers": {
+  //       "Access-Control-Allow-Credentials": "true",
+  //       "Access-Control-Allow-Origin": "*",
+  //       "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+  //       "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+  //     }
+  //   }
+  // ]
