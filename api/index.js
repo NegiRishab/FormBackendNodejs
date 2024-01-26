@@ -88,7 +88,8 @@ app.use(bodyParser.json()); /* parse json data */
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.get('/', (req, res, next) => res.status(200).json({ root: 'ok' }));
-app.use('/form', formroute);
+// app.use('/form', formroute);
+app.use('/api', formroute);
 app.use((err, req, res, next) => {
   // Log the error or perform any custom handling
   console.error(err.stack);
